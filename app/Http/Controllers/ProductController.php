@@ -379,6 +379,7 @@ class ProductController extends Controller
         try {
             $this->orderRepo->updateOrderCancel($id);
             $order = $this->orderRepo->getOneCancelOrder($id);
+            
             $notification = trans('text.customer') . ' ' . auth()->user()->name . ' ' . trans('text.has_deleted_order'); 
             auth()->user()->notify(new OrderNotification($notification));
         } catch (Exception $e) {

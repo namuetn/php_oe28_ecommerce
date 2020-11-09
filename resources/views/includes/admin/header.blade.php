@@ -18,7 +18,6 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
                 <i class="far fa-bell"></i>
-                
                 <span class="badge badge-warning navbar-badge">{{ $countNotification ?? '' }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
