@@ -97,7 +97,14 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 
     public function getOneCancelOrder($id)
     {
-        $result = $this->model->onlyTrashed()->where('id', $id)->get();;
+        $result = $this->model->onlyTrashed()->findOrFail($id);
+
+        return $result;
+    }
+
+    public function getOrderSoftDelete($id)
+    {
+        $result = $this->model->withTrashed()->findOrFail($id);
 
         return $result;
     }

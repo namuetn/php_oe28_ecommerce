@@ -94,10 +94,5 @@ class AppServiceProvider extends ServiceProvider
             $categories = Category::whereNotNull('parent_id')->get();
             $view->with('categories', $categories);
         });
-
-        view()->composer('includes.admin.header', function($view) {
-            $notifications = Notification::orderBy('created_at', 'desc')->limit(config('order.notification_limit'))->get();
-            $view->with('notifications', $notifications);
-        });
     }
 }

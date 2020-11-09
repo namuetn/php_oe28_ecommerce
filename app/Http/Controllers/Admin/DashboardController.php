@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Order\OrderRepositoryInterface;
 use App\Repositories\Notification\NotificationRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -71,7 +72,8 @@ class DashboardController extends Controller
 
     public function listNotification()
     {
-        $notifications = $this->notificationRepo->getAll();
+        $user = auth()->user();
+        $notifications = $user->notifications;
         
         return view('fashi.admin.notification.index', compact('notifications'));
     }
@@ -88,7 +90,7 @@ class DashboardController extends Controller
 
         toast(trans('message.notification.delete.success'), 'success');
 
-        return redirect()->route('admin.list_notification');
+        return back();
     }
 
     public function deleteAllNotification()

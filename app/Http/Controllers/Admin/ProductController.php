@@ -236,4 +236,11 @@ class ProductController extends Controller
 
         return back();
     }
+
+    public function orderDetail($id) 
+    {
+        $order = $this->orderRepo->getOrderSoftDelete($id);
+
+        return view('fashi.admin.order.show', compact('order'));
+    }
 }

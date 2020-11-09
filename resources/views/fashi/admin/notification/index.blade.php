@@ -49,7 +49,7 @@
         <tbody>
             @foreach ($notifications as $notification)
                 <tr>
-                    <td>{{ $notification->data ?? ''}}</td>
+                    <td><b><a href="{{ route('admin.order_detail', $notification->data['order_id']) }}">{{ $notification->data['title'] }}</a></b></td>
                     <td>{{ $notification->created_at->diffForHumans() ?? ''}}</td>
                     <td>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalDelete-{{ $notification->id }}">{{ trans('text.delete') }}</button>

@@ -29,6 +29,7 @@ Route::group(['middleware' => 'locale'], function() {
         Route::get('/notifications', 'DashboardController@listNotification')->name('list_notification');
         Route::delete('/notifications/{notification}', 'DashboardController@deleteNotification')->name('delete_notification');
         Route::delete('/notifications', 'DashboardController@deleteAllNotification')->name('delete_all_notification');
+        Route::get('/orders/{order}', 'ProductController@orderDetail')->name('order_detail');
     });
 
     Route::get('/categories/{category}', 'ProductController@showProductByCategory')->name('product.category.index');
