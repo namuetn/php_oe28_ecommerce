@@ -36,6 +36,7 @@
         <script src="{{ asset('js/addInput.js') }}"></script>
         <script src="{{ asset('js/Chart.js') }}"></script>
         <script src="{{ asset('js/lineChart.js') }}"></script>
+        <script src="{{ asset('bower_components/pusher-js/dist/web/pusher.min.js') }}"></script>
+        <script src="{{ asset('js/pusher.js') }}"></script>
     </body>
-
 </html>

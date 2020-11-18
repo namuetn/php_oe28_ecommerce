@@ -15,15 +15,14 @@
     <ul class="navbar-nav ml-auto">
       
       <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown bell">
             <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">{{ $countNotification ?? '' }}</span>
+                <span class="badge badge-warning navbar-badge count-notification">{{ $countNotification ?? '' }}</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">{{ $countNotification ?? '' }} {{ trans('text.notifications') }}</span>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right menu-notification">
                 <div class="dropdown-divider"></div>
-                @foreach (auth()->user()->notifications as $notification)
+                @foreach (auth()->user()->notifications->take(config('order.notification_limit')) as $notification)
                     <a href="{{ route('admin.order_detail', $notification->data['order_id']) }}" class="dropdown-item">
                         <i class="fas fa-envelope mr-2"></i><p style="display: inline;">{{ $notification->data['title'] }}</p>
                         <span class="float-right text-muted text-sm">{{ $notification->created_at->diffForHumans() }}</span>
