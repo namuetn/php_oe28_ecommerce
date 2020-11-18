@@ -340,7 +340,10 @@ class ProductController extends Controller
                     $productOrders .= $productName . '(' . $productSize . ', ' . $productColor . ', ' . $orderQuantity . ')' . ', ';
                 };
 
-                $notification = trans('text.customer') . ' ' . auth()->user()->name . ' ' . trans('text.has_ordered') . ' ' . $productOrders; 
+                $notification = [
+                    'title' => trans('text.customer') . ' ' . auth()->user()->name . ' ' . trans('text.has_ordered') . ' ' . $productOrders,
+                    'order_id' => $order->id,
+                ]; 
 
                 auth()->user()->notify(new OrderNotification($notification));
 
@@ -379,7 +382,12 @@ class ProductController extends Controller
         try {
             $this->orderRepo->updateOrderCancel($id);
             $order = $this->orderRepo->getOneCancelOrder($id);
-            $notification = trans('text.customer') . ' ' . auth()->user()->name . ' ' . trans('text.has_deleted_order'); 
+            
+            $notification = [
+                'title' => trans('text.customer') . ' ' . auth()->user()->name . ' ' . trans('text.has_deleted_order'),
+                'order_id' => $order->id,
+            ]; 
+            
             auth()->user()->notify(new OrderNotification($notification));
         } catch (Exception $e) {
             toast(trans('message.cart.update.error'), 'error');

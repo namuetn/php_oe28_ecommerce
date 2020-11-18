@@ -45,7 +45,7 @@ class OrderNotification extends Notification
         return (new MailMessage)
             ->line(trans('the_introduction_to_the_notification'))
             ->action(trans('notification_action'), route('index'))
-            ->line(trans('thank_you_for_using_our_application');
+            ->line(trans('thank_you_for_using_our_application'));
     }
 
     /**
