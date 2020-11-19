@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "bower_fashi_shop": "git@github.com:namuetn/bower_fashi_shop.git",
-    "bower_admin": "git@github.com:namuetn/bower_admin.git"
+    "bower_admin": "git@github.com:namuetn/bower_admin.git",
+    "pusher-js": "pusher#^7.0.1"
   }
 }
