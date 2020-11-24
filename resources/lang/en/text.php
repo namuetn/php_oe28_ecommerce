@@ -123,4 +123,5 @@ return [
     'the_introduction_to_the_notification' => 'The introduction to the notification.',
     'notification_action' => 'Notification Action',
     'thank_you_for_using_our_application' => 'Thank you for using our application!',
+    'statistical_order' => 'Statistical Order',
 ];

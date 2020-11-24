@@ -4,6 +4,7 @@ namespace App\Repositories\Order;
 use App\Repositories\BaseRepository;
 use App\Repositories\Order\OrderRepositoryInterface;
 use App\Order;
+use Carbon\Carbon;
 
 class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 {
@@ -105,6 +106,13 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     public function getOrderSoftDelete($id)
     {
         $result = $this->model->withTrashed()->findOrFail($id);
+
+        return $result;
+    }
+
+    public function getAllOrderByWeek()
+    {
+        $result = $this->model->withTrashed()->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
 
         return $result;
     }

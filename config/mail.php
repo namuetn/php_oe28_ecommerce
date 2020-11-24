@@ -107,4 +107,6 @@ return [
         ],
     ],
 
+    'monday' => 1,
+    'time_send_mail' => '20:20',
 ];

@@ -22,11 +22,13 @@
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right menu-notification">
                 <div class="dropdown-divider"></div>
-                @foreach (auth()->user()->notifications->take(config('order.notification_limit')) as $notification)
-                    <a href="{{ route('admin.order_detail', $notification->data['order_id']) }}" class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i><p style="display: inline;">{{ $notification->data['title'] }}</p>
-                        <span class="float-right text-muted text-sm">{{ $notification->created_at->diffForHumans() }}</span>
-                    </a>
+                @foreach ($users as $user)
+                    @foreach ($user->notifications->take(config('order.notification_limit')) as $notification)
+                        <a href="{{ route('admin.order_detail', $notification->data['order_id']) }}" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i><p style="display: inline;">{{ $notification->data['title'] }}</p>
+                            <span class="float-right text-muted text-sm">{{ $notification->created_at->diffForHumans() }}</span>
+                        </a>
+                    @endforeach
                 @endforeach
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('admin.list_notification') }}" class="dropdown-item dropdown-footer">{{ trans('text.see_all_notifications') }}</a>

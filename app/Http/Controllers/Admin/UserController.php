@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\User\UserRepositoryInterface;
+use App\Jobs\SendMailForAdmin;
 
 class UserController extends Controller
 {

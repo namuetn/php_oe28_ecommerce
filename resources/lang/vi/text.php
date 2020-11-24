@@ -123,4 +123,5 @@ return [
     'the_introduction_to_the_notification' => 'Phần giới thiệu về thông báo.',
     'notification_action' => 'Hoạt động thông báo',
     'thank_you_for_using_our_application' => 'Cảm ơn bạn đã sử dụng ứng dụng của chúng tôi!',
+    'statistical_order' => 'Thông kê đơn hàng',
 ];

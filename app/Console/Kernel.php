@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\SendMailCommand;
+use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +15,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        SendMailCommand::class,
     ];
 
     /**
@@ -24,7 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('mail:statistical')->weeklyOn(config('mail.monday'), config('mail.time_send_mail'));
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Repositories\Order\OrderRepositoryInterface;
 use App\Repositories\Notification\NotificationRepositoryInterface;
+use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
 use Carbon\Carbon;
@@ -12,15 +13,18 @@ use Carbon\Carbon;
 class DashboardController extends Controller
 {
     protected $orderRepo;
+    protected $userRepo;
     protected $notificationRepo;
 
     public function __construct
     (
         OrderRepositoryInterface $orderRepo, 
-        NotificationRepositoryInterface $notificationRepo
+        NotificationRepositoryInterface $notificationRepo,
+        UserRepositoryInterface $userRepo
     ) {
         $this->orderRepo = $orderRepo;
         $this->notificationRepo = $notificationRepo;
+        $this->userRepo = $userRepo;
     }
 
     public function index(Request $request)
@@ -72,10 +76,9 @@ class DashboardController extends Controller
 
     public function listNotification()
     {
-        $user = auth()->user();
-        $notifications = $user->notifications;
+        $users = $this->userRepo->getUserByAdmin();
         
-        return view('fashi.admin.notification.index', compact('notifications'));
+        return view('fashi.admin.notification.index', compact('users'));
     }
 
     public function deleteNotification($id)

@@ -28,4 +28,11 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
         return false;
     }
+
+    public function getUserByAdmin()
+    {
+        $result = $this->model->where('role', config('user.admin'))->get();
+
+        return $result;
+    }
 }

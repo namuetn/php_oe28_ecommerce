@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use App\Category;
+use App\User;
 use App\Notification;
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
@@ -93,6 +94,11 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('includes.user.header', function($view) {
             $categories = Category::whereNotNull('parent_id')->get();
             $view->with('categories', $categories);
+        });
+
+        view()->composer('includes.admin.header', function($view) {
+            $users = User::where('role', config('user.admin'))->get();
+            $view->with('users', $users);
         });
     }
 }

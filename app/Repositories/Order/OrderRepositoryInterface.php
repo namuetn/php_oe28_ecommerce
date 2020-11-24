@@ -18,4 +18,6 @@ interface OrderRepositoryInterface
     public function getOneCancelOrder($id);
 
     public function getOrderSoftDelete($id);
+
+    public function getAllOrderByWeek();
 }
